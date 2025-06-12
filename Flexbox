@@ -1,0 +1,28 @@
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.box}><Text>Box 1</Text></View>
+      <View style={styles.box}><Text>Box 2</Text></View>
+      <View style={styles.box}><Text>Box 3</Text></View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',      // Arrange children in a row (side by side)
+    justifyContent: 'space-around',  // Space between boxes
+    alignItems: 'center',      // Center vertically
+  },
+  box: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',  // Center text horizontally in box
+    alignItems: 'center',      // Center text vertically in box
+  },
+});
