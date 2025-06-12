@@ -1,0 +1,17 @@
+import { View,Text} from 'react-native';
+export default function Greeting(props) {
+  const [name, setName] = useState("Red Panda");
+
+  return ( 
+    <View>
+      <Text>Hello, {props.name}!</Text>
+    </View>
+  );
+}
+//update your App.js file as 
+return (
+    <View >
+      <Text>Hello, React Native!</Text>
+      <Greeting name="Your Name" />
+    </View>
+  );
