@@ -7,3 +7,5 @@ export default function Greeting() {
     </View>
   );
 }
+///note add this in to your main App.js as 
+import Greeting from "./Greeting';
