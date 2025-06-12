@@ -1,0 +1,15 @@
+import { View,Text,Button } from 'react-native';
+export default function Greeting() {
+  const [name, setName] = useState("Red Panda");
+
+  return ( 
+    <View>
+      <Text>Hello, {name}!</Text>
+
+      <Button
+        title="Change Name"
+        onPress={() => setName(name==="Red Panda"?"Coding Hero":"Red Panda")}
+      />
+    </View>
+  );
+}
