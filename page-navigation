@@ -117,3 +117,62 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+
+
+///////////////profile//////////////////
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+
+function ProfileScreen({ route, navigation }) {
+  const { name } = route.params;
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome, {name} 👋</Text>
+
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonSpacing}>
+          <Button
+            title="Go to Contact"
+            onPress={() => navigation.navigate('Contact', { name })}
+            color="#007bff"
+          />
+        </View>
+
+        <View style={styles.buttonSpacing}>
+          <Button
+            title="Go Back"
+            onPress={() => navigation.goBack()}
+            color="#6c757d"
+          />
+        </View>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f8f9fa', // light background
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: '600',
+    marginBottom: 40,
+    color: '#212529',
+  },
+  buttonContainer: {
+    width: '100%',
+    paddingHorizontal: 30,
+  },
+  buttonSpacing: {
+    marginVertical: 10,
+  },
+});
+
+export default ProfileScreen;
+
