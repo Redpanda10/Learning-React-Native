@@ -1,135 +1,21 @@
-//////////////////app.js//////////////
+///////App.js//////////
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen.tsx';
+import ProfileScreen from './src/screens/ProfileScreen';
+import Contact from './src/screens/Contact';
 
-
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./HomeScreen";
-import AppPro from "./AppPro";
-import { Toast } from "react-native-toast-message/lib/src/Toast";
-
-// Define stack param list
-export type RootStackParamList = {
-  Home: undefined;
-  AppPro: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="AppPro" component={AppPro} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Contact" component={Contact}/>
       </Stack.Navigator>
-      <Toast />
     </NavigationContainer>
   );
 }
-
-
-
-///////home screen 
-
-import { View, StyleSheet, ScrollView } from "react-native";
-import Profile from './Profile';
-
-function AppPro() {
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Profile 
-        name="Mohit"
-        image={require('./assets/mohit.jpg')}
-        bio="React Native Developer"  
-      />
-      <Profile 
-        name="Ashish"
-        image={require('./assets/aashish.jpg')}
-        bio="DevOps Engineer"  
-      />
-    </ScrollView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 30,
-    paddingHorizontal: 15,
-    alignItems: 'center',
-    backgroundColor: '#f0f4f8',
-    gap: 20, // adds space between profile cards (modern React Native)
-  }
-});
-
-export default AppPro;
-
-
-
-
-
-//////home screen //////////
-
-
-import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "./App";
-import Toast from "react-native-toast-message";
-
-type Props = NativeStackScreenProps<RootStackParamList, "Home">;
-
-export default function HomeScreen({ navigation }: Props) {
-  const handleClick = () => {
-    Toast.show({
-      type: "success",
-      text1: "Welcome!",
-      text2: "React Developer 👋",
-      position: "bottom",
-    });
-
-    setTimeout(() => {
-      navigation.navigate("AppPro");
-    }, 1000);
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Your Business App</Text>
-      <Text style={styles.subtitle}>Delivering solutions for your success.</Text>
-      <View style={styles.buttonContainer}>
-        <Button title="Enter" color="#0052cc" onPress={handleClick} />
-      </View>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f5f7fa",
-    padding: 30,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "700",
-    color: "#003366",
-    marginBottom: 10,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#555a66",
-    marginBottom: 30,
-    textAlign: "center",
-    fontStyle: "italic",
-  },
-  buttonContainer: {
-    width: "60%",
-    borderRadius: 8,
-    overflow: "hidden",
-    elevation: 5,
-  },
-});
