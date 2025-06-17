@@ -176,3 +176,50 @@ const styles = StyleSheet.create({
 
 export default ProfileScreen;
 
+
+//////////////contact//////////
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+
+function Contact({ route, navigation }) {
+  const { name } = route.params;
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome, {name}!</Text>
+      <Text style={styles.subtitle}>Hello, this is the Contact screen.</Text>
+
+      <View style={styles.buttonWrapper}>
+        <Button title="Go Back" onPress={() => navigation.goBack()} color="#6c757d" />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "600",
+    marginBottom: 12,
+    color: "#212529",
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "#495057",
+    marginBottom: 30,
+    textAlign: "center",
+  },
+  buttonWrapper: {
+    width: '60%',
+  }
+});
+
+export default Contact;
+
