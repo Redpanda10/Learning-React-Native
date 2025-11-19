@@ -1,0 +1,82 @@
+import { Text, View,TextInput ,StyleSheet,TouchableOpacity} from 'react-native';
+import Toast from 'react-native-toast-message';
+import { MaterialIcons } from '@expo/vector-icons';
+
+
+
+export default function App() {
+  const showToast =()=>{
+    Toast.show({
+      type:'success',
+      text1:'Successfully added!!!',
+      text2:"done",
+      position:'bottom',
+      visibilityTime:2000,
+    });
+  };
+  // let arr =Array[];
+  return (
+    <View style={Styles.container}>
+      <Text style={Styles.heading}>👋 Hey! Add your task here...</Text>
+
+      <TextInput style={Styles.inputarea} placeholder='Enter some text here'/>
+
+      <View style={Styles.mainbtn}>
+      
+      <TouchableOpacity 
+       style={Styles.button}
+       onPress={showToast}
+       >
+      <Text 
+      style={Styles.buttontext}
+      >
+        Hit me hard!
+        <MaterialIcons name="check-circle" size={24} color="green" />
+      </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={Styles.button} onPress={
+        showToast
+      }><Text style={Styles.buttontext}>Hit me hard!</Text></TouchableOpacity>
+      </View>
+
+      <Toast/>
+    </View>
+  );
+}
+  const Styles= StyleSheet.create({
+    heading:{
+      marginTop:20,
+      fontFamily:'sanserif',
+      fontSize:30,
+    },
+    inputarea:{
+      borderColor:'blue',
+      borderWidth:1,
+      margin:5,
+      borderRadius:8,
+      color:'blue',
+    },
+    container:{
+      flex:1,
+      
+    },
+    button:{
+      display:'flex',
+      
+    },
+    buttontext:{
+      color:'blue',
+      borderWidth:1,
+      textAlign:'center',
+      fontSize:16,
+      margin:10,
+      backgroundColor:'black',
+      borderRadius:20,
+    },
+    mainbtn:{
+      
+    },
+  });
+
+
+
