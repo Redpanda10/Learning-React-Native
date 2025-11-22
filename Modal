@@ -1,0 +1,18 @@
+<Modal 
+      animationType="slide"
+      transparent={true}
+      visible={openModal} 
+      style={styles.modal} 
+    >
+          <View style={styles.modal}>
+            <Text>
+              This is modal
+
+            </Text>
+            <TouchableOpacity style={styles.closebtn} onPress={handleClick}>
+              <Text>
+                Hide modal
+              </Text>
+            </TouchableOpacity>
+          </View>
+      </Modal>
