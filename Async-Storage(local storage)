@@ -24,3 +24,7 @@ export default function App() {
     </View>
   );
 }
+
+
+
+////////////npm install @react-native-async-storage/async-storage
