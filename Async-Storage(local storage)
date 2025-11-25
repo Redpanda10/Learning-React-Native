@@ -1,30 +1,112 @@
-import { View, Button } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+////////////npm install @react-native-async-storage/async-storage
 
-export default function App() {
 
-  const storeData = async () => {
-    await AsyncStorage.setItem('userName', 'RedPanda');
+
+import React, { useState } from "react";
+import { View, TextInput, Button, Alert, StyleSheet, Text } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+export default function AsyncCrudExample() {
+  const [name, setName] = useState("");
+
+  // CREATE or UPDATE (Upsert)
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem("userName", name);
+      Alert.alert("Success 🎉", "Data saved successfully!");
+      setName("");
+    } catch (error) {
+      Alert.alert("Error ❌", "Failed to save data!");
+    }
   };
 
+  // READ
   const getData = async () => {
-    const value = await AsyncStorage.getItem('userName');
-    console.log(value);
+    try {
+      const value = await AsyncStorage.getItem("userName");
+      if (value !== null) {
+        Alert.alert("Stored Name", value);
+      } else {
+        Alert.alert("Empty 📭", "No data found!");
+      }
+    } catch (error) {
+      Alert.alert("Error ❌", "Unable to load data!");
+    }
   };
 
+  // UPDATE (Same as save but just an alert message change)
+  const updateData = async () => {
+    try {
+      if (!name) {
+        Alert.alert("Warning ⚠️", "Enter a name to update!");
+        return;
+      }
+      await AsyncStorage.setItem("userName", name);
+      Alert.alert("Updated ✨", "Data updated successfully!");
+      setName("");
+    } catch (error) {
+      Alert.alert("Error ❌", "Failed to update data!");
+    }
+  };
+
+  // DELETE
   const removeData = async () => {
-    await AsyncStorage.removeItem('userName');
+    try {
+      await AsyncStorage.removeItem("userName");
+      Alert.alert("Deleted 🗑️", "Data removed successfully!");
+    } catch (error) {
+      Alert.alert("Error ❌", "Failed to delete data!");
+    }
   };
 
   return (
-    <View style={{ marginTop: 100 }}>
-      <Button title="Save Data" onPress={storeData} />
-      <Button title="Get Data" onPress={getData} />
-      <Button title="Remove Data" onPress={removeData} />
+    <View style={styles.container}>
+      <Text style={styles.label}>Enter Name:</Text>
+      
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your name"
+        placeholderTextColor="#aaa"
+        value={name}
+        onChangeText={(val) => setName(val)}
+      />
+
+      <View style={styles.buttonContainer}>
+        <Button title="Save" onPress={saveData} />
+        <Button title="Get" onPress={getData} />
+        <Button title="Update" onPress={updateData} />
+        <Button title="Delete" onPress={removeData} />
+      </View>
     </View>
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 25,
+    backgroundColor: "#000",
+    justifyContent: "center",
+  },
+  label: {
+    color: "#fff",
+    fontSize: 22,
+    marginBottom: 10,
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: "#8A2BE2",
+    borderRadius: 10,
+    padding: 12,
+    fontSize: 18,
+    color: "#fff",
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    gap: 10,
+  }
+});
 
 
-////////////npm install @react-native-async-storage/async-storage
+
+
