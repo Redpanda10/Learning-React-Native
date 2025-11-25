@@ -1,0 +1,8 @@
+import { Alert } from "react-native";
+
+
+///in main function use this 
+
+
+
+Alert.alert("Hello!", "This is a simple alert message!");
