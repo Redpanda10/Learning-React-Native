@@ -9,7 +9,10 @@ Alert.alert("Hello!", "This is a simple alert message!");
 
 
 
-///a bit complex but useful one 
+///a bit complex but useful one with options 
+
+
+
 Alert.alert(
   "Confirm Action",
   "Are you sure you want to continue?",
