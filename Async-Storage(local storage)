@@ -1,0 +1,26 @@
+import { View, Button } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export default function App() {
+
+  const storeData = async () => {
+    await AsyncStorage.setItem('userName', 'RedPanda');
+  };
+
+  const getData = async () => {
+    const value = await AsyncStorage.getItem('userName');
+    console.log(value);
+  };
+
+  const removeData = async () => {
+    await AsyncStorage.removeItem('userName');
+  };
+
+  return (
+    <View style={{ marginTop: 100 }}>
+      <Button title="Save Data" onPress={storeData} />
+      <Button title="Get Data" onPress={getData} />
+      <Button title="Remove Data" onPress={removeData} />
+    </View>
+  );
+}
