@@ -6,3 +6,22 @@ import { Alert } from "react-native";
 
 
 Alert.alert("Hello!", "This is a simple alert message!");
+
+
+
+///a bit complex but useful one 
+Alert.alert(
+  "Confirm Action",
+  "Are you sure you want to continue?",
+  [
+    {
+      text: "Cancel",
+      onPress: () => console.log("Cancel Pressed"),
+      style: "cancel"
+    },
+    {
+      text: "OK",
+      onPress: () => console.log("OK Pressed")
+    }
+  ]
+);
