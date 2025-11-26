@@ -1,5 +1,24 @@
+////////////////////////////////
+using fetch
+
+
 try {
       const response = await fetch(
         "https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=Kathmandu"
       );
       const json = await response.json();
+////////////////////////////////////////////////////////////////////////////////////
+
+using axios
+
+
+ try {
+      const response = await axios.get(
+        "https://api.weatherapi.com/v1/current.json",
+        {
+          params: {
+            key: "YOUR_API_KEY",
+            q: "Kathmandu"
+          }
+        }
+      );
